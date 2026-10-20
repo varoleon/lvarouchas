@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leonidas Varouchas — Digital Space Under Construction</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+          },
+          colors: {
+            cosmos: {
+              950: '#03050C',
+              900: '#070C1B',
+              800: '#0D152D',
+            },
+            starlight: '#F1F5F9',
+            nebula: {
+              violet: '#A855F7',
+              cyan: '#06B6D4',
+              blue: '#3B82F6',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float-gentle': 'float 9s ease-in-out infinite',
+            'shimmer': 'shimmer 4s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            shimmer: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.9' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Dark Space Theme Base Styles */
+    body {
+      background-color: #03050C;
+      color: #F1F5F9;
+      overflow-x: hidden;
+    }
+
+    /* Glassmorphism Space Panel */
+    .space-card {
+      background: rgba(13, 21, 45, 0.45);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 
+                  0 0 40px rgba(168, 85, 247, 0.08);
+    }
+
+    /* Shimmer Text Effect */
+    .text-gradient {
+      background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 40%, #A855F7 75%, #06B6D4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtle-glow {
+      text-shadow: 0 0 25px rgba(168, 85, 247, 0.35);
+    }
+
+    ::selection {
+      background: #A855F7;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col justify-between relative selection:bg-nebula-violet selection:text-white">
+
+  <!-- Canvas for Deep Space Starfield & Cursor Stardust Trail -->
+  <canvas id="spaceCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Ambient Nebula Orbs -->
+  <div class="fixed top-[-10%] left-[-10%] w-[55vw] h-[55vw] rounded-full bg-nebula-violet/15 blur-[140px] pointer-events-none animate-pulse-slow"></div>
+  <div class="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-nebula-cyan/15 blur-[160px] pointer-events-none animate-pulse-slow" style="animation-delay: 3s;"></div>
+  <div class="fixed top-[40%] right-[20%] w-[35vw] h-[35vw] rounded-full bg-nebula-blue/10 blur-[130px] pointer-events-none animate-pulse-slow" style="animation-delay: 5s;"></div>
+
+  <!-- Main Layout Wrapper -->
+  <div class="relative z-10 flex flex-col min-h-screen max-w-5xl mx-auto px-6 py-10 justify-between">
+
+    <!-- Header / Brand -->
+    <header class="flex items-center justify-between border-b border-white/10 pb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-2.5 h-2.5 rounded-full bg-nebula-cyan shadow-[0_0_12px_#06B6D4] animate-ping"></div>
+        <span class="font-display font-semibold tracking-widest text-xs uppercase text-slate-400">Personal Space</span>
+      </div>
+
+      <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-nebula-violet"></i>
+        <span>In Progress</span>
+      </div>
+    </header>
+
+    <!-- Center Display Card -->
+    <main class="my-auto py-16 sm:py-24 flex items-center justify-center">
+      
+      <div class="space-card rounded-3xl p-8 sm:p-14 max-w-3xl w-full text-center relative overflow-hidden animate-float-gentle">
+        
+        <!-- Subtle Top Glow Bar -->
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-nebula-violet/50 to-transparent"></div>
+
+        <!-- Space Coordinates / Status Tag -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs tracking-wider uppercase mb-8">
+          <i data-lucide="orbit" class="w-3.5 h-3.5 text-nebula-cyan animate-spin-slow"></i>
+          <span>System Construction</span>
+        </div>
+
+        <!-- Prominent Display Name -->
+        <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-gradient mb-6 subtle-glow">
+          Leonidas Varouchas
+        </h1>
+
+        <!-- Subtitle Headline -->
+        <p class="font-sans text-lg sm:text-2xl text-slate-200 font-light tracking-wide max-w-xl mx-auto mb-6 leading-relaxed">
+          Digital Space Under Construction
+        </p>
+
+        <!-- Divider Line -->
+        <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-slate-500 to-transparent mx-auto mb-6"></div>
+
+        <!-- Secondary Description -->
+        <p class="text-sm sm:text-base text-slate-400 max-w-md mx-auto font-normal leading-relaxed">
+          Designing and crafting an extraordinary online presence. Launching soon into the digital universe.
+        </p>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© <span id="year"></span> Leonidas Varouchas. All rights reserved.</p>
+      
+      <div class="flex items-center gap-2 text-slate-400">
+        <i data-lucide="compass" class="w-3.5 h-3.5 text-nebula-violet"></i>
+        <span>Preparing Orbit</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Initialize Icons & Dynamic Year
+    lucide.createIcons();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ----------------------------------------------------
+       DEEP SPACE CANVAS: STARFIELD + CURSOR STARDUST TRAIL
+    ---------------------------------------------------- */
+    const canvas = document.getElementById('spaceCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    let stars = [];
+    let trailParticles = [];
+    const mouse = { x: -1000, y: -1000, active: false };
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initStars();
+    }
+
+    // 1. Static & Drifting Stars
+    class Star {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 1.5 + 0.3;
+        this.baseAlpha = Math.random() * 0.7 + 0.2;
+        this.alpha = this.baseAlpha;
+        this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+        this.speedY = -(Math.random() * 0.15 + 0.05);
+        this.color = ['#FFFFFF', '#E2E8F0', '#A855F7', '#06B6D4', '#93C5FD'][Math.floor(Math.random() * 5)];
+      }
+      update() {
+        this.y += this.speedY;
+        this.alpha += Math.sin(Date.now() * this.twinkleSpeed) * 0.01;
+        if (this.y < 0) {
+          this.y = height;
+          this.x = Math.random() * width;
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = Math.max(0.1, Math.min(1, this.alpha));
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    // 2. Cursor Stardust Trail Particles
+    class TrailParticle {
+      constructor(x, y) {
+        this.x = x + (Math.random() - 0.5) * 8;
+        this.y = y + (Math.random() - 0.5) * 8;
+        this.size = Math.random() * 2.5 + 1;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8 - 0.3;
+        this.life = 1;
+        this.decay = Math.random() * 0.025 + 0.015;
+        const colors = ['#A855F7', '#06B6D4', '#3B82F6', '#FFFFFF'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life -= this.decay;
+        this.size *= 0.96;
+      }
+      draw() {
+        if (this.life <= 0) return;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, Math.max(0.2, this.size), 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = Math.max(0, this.life);
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = this.color;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    function initStars() {
+      stars = [];
+      const density = Math.floor((width * height) / 3200);
+      for (let i = 0; i < density; i++) {
+        stars.push(new Star());
+      }
+    }
+
+    // Pointer listeners for glowing particle trail
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.active = true;
+
+      // Add trail particles on cursor movement
+      for (let i = 0; i < 2; i++) {
+        trailParticles.push(new TrailParticle(mouse.x, mouse.y));
+      }
+    });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.active = false;
+    });
+
+    // Touch support for mobile devices
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+        for (let i = 0; i < 2; i++) {
+          trailParticles.push(new TrailParticle(mouse.x, mouse.y));
+        }
+      }
+    });
+
+    function animateSpace() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Render background starfield
+      stars.forEach(star => {
+        star.update();
+        star.draw();
+      });
+
+      // Render & clean up cursor trail particles
+      for (let i = trailParticles.length - 1; i >= 0; i--) {
+        const p = trailParticles[i];
+        p.update();
+        p.draw();
+        if (p.life <= 0) {
+          trailParticles.splice(i, 1);
+        }
+      }
+
+      requestAnimationFrame(animateSpace);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animateSpace();
+  </script>
+</body>
+</html>
